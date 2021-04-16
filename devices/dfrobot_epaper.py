@@ -250,12 +250,13 @@ class DFRobot_Epaper(DFRobot_Display):
       self._bitmapFileStartX += 1
   
   def endDrawBitmapFile(self):
-    self.flush(self.PART)
+    #self.flush(self.PART)
+    time.sleep(0.01)
   def clearScreen(self):
     self.clear(self.WHITE)
     self.flush(self.FULL)
     if self.VERSION == self.GDEH0213B72:
-         self.flush(self.PART)
+         #self.flush(self.PART)
          time.sleep(0.1)
     elif self.VERSION == self.GDEH0213B1:
          time.sleep(0.1)
