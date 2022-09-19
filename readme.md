@@ -1,4 +1,4 @@
-# DFRobot_RPi_Display_V2
+# DFRobot_RPi_Display_V3
 - [中文版](./README_CN.md)
 
 This Raspberry Pi e-ink display module comes with a 2.13" screen with a resolution of 250×122, 
