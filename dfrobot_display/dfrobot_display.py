@@ -1,5 +1,15 @@
 # -*- coding:utf-8 -*-
-
+'''!
+  @file DFRobot_Display.py
+  @brief Define the basic structure of class DFRobot_Display 
+  @details 该类提供在显示屏上绘制各种图形的函数
+  @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @License     The MIT License (MIT)
+  @author [fengli](li.feng@dfrobot.com)
+  @version  V1.0
+  @date  2022-6-13
+  @url https://github.com/DFRobot/DFRobot_RPi_Display_V3
+'''
 import sys
 
 from .dfrobot_printString import PrintString
@@ -111,12 +121,26 @@ class DFRobot_Display(PrintString):
     return -1
 
   def color16to24(self, color):
+    '''!
+      @fn color16to24
+      @brief RGB565转化为RGB888
+      @return RGB888格式的数据
+    '''
     return color16to24(color)
 
   def color24to16(self, color):
+    '''!
+      @fn color24to16
+      @brief RGB888转化为RGB565
+      @return RGB565格式的数据
+    '''
     return color24to16(color)
 
   def setColorTo16(self):
+    '''!
+      @fn setColorTo16
+      @brief 设置颜色数据格式为RGB565
+    '''
     self.WHITE = self.WHITE16
     self.SILVER = self.SILVER16
     self.GRAY = self.GRAY16
@@ -135,6 +159,10 @@ class DFRobot_Display(PrintString):
     self.TEAL = self.TEAL16
 
   def setColorTo24(self):
+    '''!
+      @fn setColorTo24
+      @brief 设置颜色数据格式为RGB888
+    '''
     self.WHITE = self.WHITE24
     self.SILVER = self.SILVER24
     self.GRAY = self.GRAY24
@@ -153,11 +181,24 @@ class DFRobot_Display(PrintString):
     self.TEAL = self.TEAL24
 
   def setLineWidth(self, w):
+    '''!
+      @fn setLineWidth
+      @brief 设置线段的宽度
+    '''
     if w < 0:
       return
     self._lineWidth = w
 
   def setTextFormat(self, size, color, background, intervalRow = 2, intervalCol = 0):
+    '''!
+      @fn setTextFormat
+      @brief 设置文本格式
+      @param size 字体大小
+      @param colo 字体颜色
+      @param background 字体的背景色
+      @param intervalRow 字体行之间的间隔
+      @param intervalCol 字体列之间的间隔
+    '''
     self._textColor = color
     self._textIntervalRow = intervalRow
     self._textIntervalCol = intervalCol
@@ -167,35 +208,86 @@ class DFRobot_Display(PrintString):
     self._textSize = size
 
   def setTextCursor(self, x, y):
+    '''!
+      @fn setTextCursor
+      @brief 设置光标位置
+      @param x x轴坐标
+      @param y y轴坐标
+    '''
     self._textCursorX = int(x)
     self._textCursorY = int(y)
 
   def setBitmapSize(self, size):
+    '''!
+      @fn setBitmapSize
+      @brief 设置位图的尺寸
+      @param size 位图的大小
+    '''
     if size < 0:
       return
     self._bitmapSize = size
 
   def setBitmapFmt(self, fmt):
+    '''!
+      @fn setBitmapFmt
+      @brief 设置位图显示格式
+      @param fmt 格式配置
+    '''
     self._bmpFmt = fmt
 
   def setExFonts(self, obj):
+    '''!
+      @fn setExFonts
+      @brief 设置字体
+      @param fmt 字体
+    '''
     self._fonts.setExFonts(obj)
 
   def setExFontsFmt(self, width, height):
+    '''!
+      @fn setExFontsFmt
+      @brief 设置字体的宽度和高度
+      @param width 字体的宽度
+      @param height 字体的高度
+    '''
     self._fonts.setExFontsFmt(width, height)
     
   def setEnableDefaultFonts(self, opt):
+    '''!
+      @fn setEnableDefaultFonts
+      @brief 设置默认的字体
+      @param opt 字体类型
+    '''
     self._fonts.setEnableDefaultFonts(opt)
 
   def pixel(self, x, y, color):
+    '''!
+      @fn pixel
+      @brief 在屏幕(x,y)坐标处画一个点
+      @param x x轴坐标
+      @param y y轴坐标
+    '''
     pass
 
   def clear(self, color):
+    '''!
+      @fn clear
+      @brief 清理屏幕
+      @param color 颜色
+    '''
     self.fillRect(0, 0, self._width, self._height, color)
     self._textCursorX = 0
     self._textCursorY = 0
 
   def VLine(self, x, y, h, color):
+    '''!
+      @fn VLine
+      @brief 画一条垂直线
+      @param x x轴坐标
+      @param y y轴坐标
+      @param h 这条线的长度
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     h = int(h)
@@ -210,6 +302,14 @@ class DFRobot_Display(PrintString):
       y += direction
 
   def HLine(self, x, y, w, color):
+    '''!
+      @fn HLine
+      @brief 画一条水平线
+      @param x x轴坐标
+      @param y y轴坐标
+      @param w 这条线的长度
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     w = int(w)
@@ -223,6 +323,15 @@ class DFRobot_Display(PrintString):
       x += direction
 
   def line(self, x, y, x1, y1, color):
+    '''!
+      @fn line
+      @brief 画一条直线
+      @param x 直线的x轴起始坐标
+      @param y 直线的y轴起始坐标
+      @param x1 直线的x轴结束坐标
+      @param x1 直线的y轴结束坐标
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     x1 = int(x1)
@@ -259,11 +368,33 @@ class DFRobot_Display(PrintString):
       self.VLine(x1, y1, 1, color)
 
   def triangle(self, x, y, x1, y1, x2, y2, color):
+    '''!
+      @fn triangle
+      @brief 画一个空心三角形
+      @param x 三角形第一个点的x坐标
+      @param y 三角形第一个点的y坐标
+      @param x1 三角形第二个点的x坐标
+      @param x1 三角形第二个点的y坐标
+      @param x1 三角形第三个点的x坐标
+      @param x1 三角形第三个点的y坐标
+      @param color 颜色
+    '''
     self.line(x, y, x1, y1, color)
     self.line(x1, y1, x2, y2, color)
     self.line(x2, y2, x, y, color)
 
   def fillTriangle(self, x, y, x1, y1, x2, y2, color):
+    '''!
+      @fn fillTriangle
+      @brief 画一个实心三角形
+      @param x 三角形第一个点的x坐标
+      @param y 三角形第一个点的y坐标
+      @param x1 三角形第二个点的x坐标
+      @param x1 三角形第二个点的y坐标
+      @param x1 三角形第三个点的x坐标
+      @param x1 三角形第三个点的y坐标
+      @param color 颜色
+    '''
     self.line(x, y, x1, y1, color)
     self.line(x1, y1, x2, y2, color)
     self.line(x2, y2, x, y, color)
@@ -331,6 +462,15 @@ class DFRobot_Display(PrintString):
     self._lineWidth = temp
 
   def rect(self, x, y, w, h, color):
+    '''!
+      @fn rect
+      @brief 画一个空心矩形
+      @param x 矩形起点x坐标
+      @param y 矩形起点y坐标
+      @param w 矩形宽度
+      @param h 矩形高度
+      @param color 颜色
+    '''
     if w < 0:
       x += w
       w = -w
@@ -343,6 +483,15 @@ class DFRobot_Display(PrintString):
     self.VLine(x + w, y - self._lineWidth // 2, h + self._lineWidth, color)
 
   def fillRect(self, x, y, w, h, color):
+    '''!
+      @fn fillRect
+      @brief 画一个实心矩形
+      @param x 矩形起点x坐标
+      @param y 矩形起点y坐标
+      @param w 矩形宽度
+      @param h 矩形高度
+      @param color 颜色
+    '''
     temp = self._lineWidth
     self._lineWidth = 1
     if w < 0:
@@ -359,6 +508,15 @@ class DFRobot_Display(PrintString):
   QUADRANT_ALL = 15
 
   def circleHelper(self, x, y, r, quadrant, color):
+    '''!
+      @fn circleHelper
+      @brief 画空心圆辅助函数
+      @param x 圆心的x坐标
+      @param y 圆心的y坐标
+      @param r 半径
+      @param quadrant 用来表示是哪一个四分之一圆
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     r = abs(int(r))
@@ -399,9 +557,27 @@ class DFRobot_Display(PrintString):
         self.fillRect(x + vy - halfLineWidth, y + vx - halfLineWidth, self._lineWidth, self._lineWidth, color)  # quadrant 4
 
   def circle(self, x, y, r, color):
+    '''!
+      @fn circle
+      @brief 画一个空心圆
+      @param x 圆心的x坐标
+      @param y 圆心的y坐标
+      @param r 半径
+      @param quadrant 用来表示是哪一个四分之一圆
+      @param color 颜色
+    '''
     self.circleHelper(x, y, r, self.QUADRANT_ALL, color)
 
   def fillCircleHelper(self, x, y, r, quadrant, color):
+    '''!
+      @fn fillCircleHelper
+      @brief 画实心圆辅助函数
+      @param x 圆心的x坐标
+      @param y 圆心的y坐标
+      @param r 半径
+      @param quadrant 用来表示是哪一个四分之一圆
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     r = abs(int(r))
@@ -444,9 +620,28 @@ class DFRobot_Display(PrintString):
     self._lineWidth = temp
 
   def fillCircle(self, x, y, r, color):
+    '''!
+      @fn fillCircle
+      @brief 画一个空心圆
+      @param x 圆心的x坐标
+      @param y 圆心的y坐标
+      @param r 半径
+      @param quadrant 用来表示是哪一个四分之一圆
+      @param color 颜色
+    '''
     self.fillCircleHelper(x, y, r, self.QUADRANT_ALL, color)
 
   def roundRect(self, x, y, w, h, r, color):
+    '''!
+      @fn roundRect
+      @brief 画一个空心的带圆角的矩形
+      @param x 矩形起点x坐标
+      @param y 矩形起点y坐标
+      @param w 矩形宽度
+      @param h 矩形高度
+      @param r 圆角的半径
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     w = int(w)
@@ -468,6 +663,16 @@ class DFRobot_Display(PrintString):
     self.circleHelper(x + w - r, y + h - r, r, self.QUADRANT_4, color)
 
   def fillRoundRect(self, x, y, w, h, r, color):
+    '''!
+      @fn fillRoundRect
+      @brief 画一个实心的带圆角的矩形
+      @param x 矩形起点x坐标
+      @param y 矩形起点y坐标
+      @param w 矩形宽度
+      @param h 矩形高度
+      @param r 圆角的半径
+      @param color 颜色
+    '''
     x = int(x)
     y = int(y)
     w = int(w)
@@ -507,6 +712,17 @@ class DFRobot_Display(PrintString):
           i >>= 1
 
   def bitmap(self, x, y, bitmap, w, h, color, background):
+    '''!
+      @fn bitmap
+      @brief 画位图
+      @param x  起点x坐标
+      @param y  起点y坐标
+      @param bitmap  位图数组
+      @param w 位图的宽度
+      @param h 位图的高度
+      @param color 位图的颜色
+      @param background 位图的背景色
+    '''
     if w < 0 or h < 0:
       return
     x = abs(int(x))
@@ -573,15 +789,37 @@ class DFRobot_Display(PrintString):
   BITMAP_COMPRESSION_FIELDS = 3
 
   def startDrawBitmapFile(self, x, y):
+    '''!
+      @fn startDrawBitmapFile
+      @brief 开始位图的绘制
+      @param x  起点x坐标
+      @param y  起点y坐标
+    '''
     pass
   
   def bitmapFileHelper(self, buf):
+    '''!
+      @fn bitmapFileHelper
+      @brief 位图绘制辅助函数
+      @param buf  位图数组
+    '''
     pass
 
   def endDrawBitmapFile(self):
+    '''!
+      @fn endDrawBitmapFile
+      @brief 结束位图的绘制
+    '''
     pass
 
   def bitmapFile(self, x, y, path):
+    '''!
+      @fn bitmapFile
+      @brief 画位图
+      @param x  起点x坐标
+      @param y  起点y坐标
+      @param path  位图文件所在的路径
+    '''
     try:
       f = open(path, "rb")
     except:
@@ -649,6 +887,11 @@ class DFRobot_Display(PrintString):
       print("dont support this bitmap file format yet")
 
   def writeOneChar(self, c):
+    '''!
+      @fn writeOneChar
+      @brief 在墨水屏上显示一个字符
+      @param c char类型的字符数据
+    '''
     if len(c) > 1:
       c = c[0]
     (l, width, height, fmt) = self._fonts.getOneCharacter(c)

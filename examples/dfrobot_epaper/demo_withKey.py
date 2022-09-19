@@ -1,15 +1,14 @@
 # -*- coding:utf-8 -*-
-'''
-file demo_withKey.py
-
-connect epaper to your raspberryPi
-after clear screen, click keyA or keyB, you can see "A" or "B" printed on your device
-
-Copyright   [DFRobot](http://www.dfrobot.com), 2016
-Copyright   GNU Lesser General Public License
-
-version  V1.0
-date  2018-10-27
+'''!
+  @file demo_withKey.py
+  @brief °´¼ükeyAºÍkeyB²âÊÔ
+  @n after clear screen, click keyA or keyB, you can see "A" or "B" printed on your device
+  @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @License     The MIT License (MIT)
+  @author [fengli](li.feng@dfrobot.com)
+  @version  V1.0
+  @date  2022-6-13
+  @url https://github.com/DFRobot/DFRobot_RPi_Display_V3
 '''
 
 import sys
@@ -17,7 +16,7 @@ sys.path.append("../..") # set system path to top
 
 import threading
 
-from devices import dfrobot_epaper
+from devices import DFRobot_Epaper
 import time
 
 from display_extension.freetype_helper import Freetype_Helper
@@ -32,7 +31,7 @@ RASPBERRY_PIN_CD = 17
 RASPBERRY_PIN_BUSY = 4
 RASPBERRY_PIN_RST = 26
 # get gpio interface
-GPIO = dfrobot_epaper.GPIO
+GPIO = DFRobot_Epaper.GPIO
 EPAPER_KEY_A = 21
 EPAPER_KEY_B = 20
 
@@ -44,7 +43,7 @@ pinOut.setOut(GPIO.LOW)
 pinOut.setOut(GPIO.HIGH)
 '''
 
-epaper = dfrobot_epaper.DFRobot_Epaper_SPI(RASPBERRY_SPI_BUS, RASPBERRY_SPI_DEV, RASPBERRY_PIN_CS, RASPBERRY_PIN_CD, RASPBERRY_PIN_BUSY,RASPBERRY_PIN_RST) # create epaper object
+epaper = DFRobot_Epaper.DFRobot_Epaper_SPI(RASPBERRY_SPI_BUS, RASPBERRY_SPI_DEV, RASPBERRY_PIN_CS, RASPBERRY_PIN_CD, RASPBERRY_PIN_BUSY,RASPBERRY_PIN_RST) # create epaper object
 
 # config extension fonts
 ft = Freetype_Helper(fontFilePath)

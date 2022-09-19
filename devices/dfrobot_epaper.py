@@ -1,5 +1,15 @@
-# -*- coding:utf-8 -*-
-
+# -*- coding: utf-8 -*
+""" 
+  @file DFRobot_Epaper.py
+  @brief Define the basic structure of class DFRobot_Epaper 
+  @details 该类提供初始化墨水屏的代码和发送指令的函数
+  @copyright   Copyright (c) 2010 DFRobot Co.Ltd (http://www.dfrobot.com)
+  @License     The MIT License (MIT)
+  @author [fengli](li.feng@dfrobot.com)
+  @version  V1.0
+  @date  2022-6-09
+  @url https://github.com/DFRobot/DFRobot_RPi_Display_V3
+"""
 import time
 
 import sys
@@ -35,6 +45,12 @@ class DFRobot_Epaper(DFRobot_Display):
   VERSION = GDEH0213B72
   is_full = True
   def __init__(self, width = 250, height = 122):
+    '''!
+      @fn __init__
+      @brief init function
+      @param width 屏幕的宽度
+      @param height 屏幕的高度
+    '''
     DFRobot_Display.__init__(self, width, height)
     length = 4000
     self._displayBuffer = bytearray(length)
@@ -58,6 +74,10 @@ class DFRobot_Epaper(DFRobot_Display):
     self._busyEdge = edge
 
   def begin(self):
+    '''!
+      @fn begin
+      @brief 获取树莓派墨水屏的ID
+    '''
     version = self.readID()
     if(version[0] == 0x01):
        self.VERSION = self.GDEH0213B1
@@ -70,6 +90,12 @@ class DFRobot_Epaper(DFRobot_Display):
 
 
   def pixel(self, x, y, color):
+    '''!
+      @fn pixel
+      @brief 在屏幕的(x,y)坐标画一个点
+      @param x x轴坐标
+      @param y y轴坐标
+    '''
     if x < 0 or x >= self._width:
       return
     if y < 0 or y >= self._height:
@@ -223,6 +249,11 @@ class DFRobot_Epaper(DFRobot_Display):
     self.writeCmdAndData(0x22, [0xf4])
     self.writeCmdAndData(0x20, [])
   def flush(self, mode):
+    '''!
+      @fn flush
+      @brief 把已经准备好的屏幕图像buffer发送出去,显示到墨水屏
+      @param mode 显示的模式FULL:全屏刷新,PART:局部刷新
+    '''
     if mode != self.FULL and mode != self.PART:
       return
     if self.is_full == True and mode == self.PART:
@@ -237,10 +268,21 @@ class DFRobot_Epaper(DFRobot_Display):
       self._sleep()
    
   def startDrawBitmapFile(self, x, y):
+    '''!
+      @fn startDrawBitmapFile
+      @brief 绘制位图
+      @param x 位图起始x坐标
+      @param y 位图起始y坐标
+    '''
     self._bitmapFileStartX = x
     self._bitmapFileStartY = y
 
   def bitmapFileHelper(self, buf):
+    '''!
+      @fn bitmapFileHelper
+      @brief 将位图数据buffer按规则移到到屏幕图像buffer
+      @param buf 待发送位图数据buffer
+    '''
     for i in range(len(buf) // 3):
       addr = i * 3
       if buf[addr] == 0x00 and buf[addr + 1] == 0x00 and buf[addr + 2] == 0x00:
@@ -250,9 +292,17 @@ class DFRobot_Epaper(DFRobot_Display):
       self._bitmapFileStartX += 1
   
   def endDrawBitmapFile(self):
+    '''!
+      @fn endDrawBitmapFile
+      @brief 把已经准备好的屏幕图像buffer发送出去,显示位图到墨水屏
+    '''
     #self.flush(self.PART)
     time.sleep(0.01)
   def clearScreen(self):
+    '''!
+      @fn clearScreen
+      @brief 清除墨水屏上显示的东西
+    '''
     self.clear(self.WHITE)
     self.flush(self.FULL)
     if self.VERSION == self.GDEH0213B72:
@@ -263,8 +313,16 @@ class DFRobot_Epaper(DFRobot_Display):
     
     
   def setVersion(self,version):
-      self.VERSION = version
+    '''!
+      @fn setVersion
+      @brief 手动设置屏幕的版本号
+    '''
+    self.VERSION = version
   def readID(self):
+    '''!
+      @fn clearScreen
+      @brief 读取墨水屏的ID
+    '''
     self.writeCmdAndData(0x2f, [])
     return self.readData(1)
 

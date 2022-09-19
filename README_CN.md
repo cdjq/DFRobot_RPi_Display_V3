@@ -1,39 +1,40 @@
 # DFRobot_RPi_Display_V2
-- [中文版](./README_CN.md)
+- [English Version](./README.md)
 
-This Raspberry Pi e-ink display module comes with a 2.13" screen with a resolution of 250×122, 
-adopting SPI interface to communicate with Raspberry Pi. It leads out the pins on Raspberry Pi,
-so there would be no conflicts if you need to use the e-ink display and Raspberry Pi’s pins at 
-the same time. The display supports custom font. There are two patch touch switches on the module
-for expanding more applications. This e-ink display features small size, compact layout, plug and 
-play, and low power consumption. It can provide clear display even in sunlight. When powered off, 
-the e-ink display will continue to display the last screen. Since it will take a long time for the
-display to refresh fully, we don’t recommend using the product in the application that needs frequent 
-refreshing to display data.
+这款树莓派墨水屏显示器模块，搭载一块2.13寸250×122分辨率电子墨水屏，采用SpI接口与树莓派通信。
+该模块将树莓派的引脚引出，使用墨水屏的同时，不影响你使用树莓派引脚。该墨水屏可以自定义字体，
+通过ttf文件可以定制宋体、楷体、黑体等多种字体。另外墨水屏显示器模块上增加两个贴片触摸开关，
+方便扩展更多应用。该墨水屏体积小巧，布局紧凑，即插即用，具有低功耗，阳光下可清晰显示，
+断电后保持最后一屏内容等特点。由于墨水屏全局刷新时间较长，不建议用于频繁动态刷新显示数据的场合。
+![产品效果图片](./resources/images/DFR0591.jpg)
 
-![Product Image](./resources/images/DFR0591.jpg)
+## 产品链接（https://www.dfrobot.com.cn/goods-1961.html)
+    DFR0238：树莓派4B/3B+/zero w 2.13英寸黑白墨水屏
 
-## Product Link (https://www.dfrobot.com/product-1866.html)
-    DFR0591: 2.13" e-ink Display Module for Raspberry Pi 4B/3B+/Zero W
+## 目录
 
-### Table of content
+* [概述](#概述)
+* [库安装](#库安装)
+* [方法](#方法)
+* [兼容性](#兼容性y)
+* [历史](#历史)
+* [创作者](#创作者)
 
-* [Summary](#summary)
-* [Installation](#installation)
-* [Methods](#methods)
-* [Compatibility](#compatibility)
-* [History](#history)
-* [Credits](#credits)
+## 概述
 
-## Summary
+   1.在墨水屏上显示文字,位图,几何图形
+   2.按键的控制
 
-Provide an raspberrypi library to use raspberry PI ink screen
 
-## Installation
 
-To use the library, first download it to Raspberry Pi, then open the routines folder. To execute a routine demox.py, type Python demox.py on the command line. For example, the readweight. py routine, you need to type:
+## 库安装
+要使用库，首先下载到树莓派，然后打开例程文件夹。要执行例程demox.py，请在命令行上键入Python demox.py。
+例如，demo_bitmap。Py例程，你需要输入:
+```python
+python demo_bitmap.py
+```
 
-## Methods 
+## Methods
 
 ```python
 
@@ -352,19 +353,28 @@ To use the library, first download it to Raspberry Pi, then open the routines fo
 ```
 
 
-## Compatibility
+## 兼容性
 
-boards | Work Well | Untest | Remark
--------|-----------|--------|-------
-raspberryPi 3b | √ | |
-raspberryPi 3b+ | √ | |
-raspberryPi Zero W | √ | |
-raspberryPi Zero | | √ |
+
+
+| 主板         | 通过 | 未通过 | 未测试 | 备注 |
+| ------------ | :--: | :----: | :----: | :--: |
+| RaspberryPi2 |      |        |   √    |      |
+| RaspberryPi3 |      |        |   √    |      |
+| RaspberryPi4 |  √   |        |        |      |
+
+* Python 版本
+
+| Python  | 通过 | 未通过 | 未测试 | 备注 |
+| ------- | :--: | :----: | :----: | ---- |
+| Python2 |  √   |        |        |      |
+| Python3 |  √   |        |        |      |
 
 ## History
 
-- 2022/9/19 - Version 1.0.0 released.
+- 2022/03/11 - 1.0.0 版本
+
+
 ## Credits
 
-Written by fengli(li.feng@dfrobot.com), 2022.9.19 (Welcome to our [website](https://www.dfrobot.com/))
-
+Written by fengli(li.feng@dfrobot.com), 2022. (Welcome to our [website](https://www.dfrobot.com/))
