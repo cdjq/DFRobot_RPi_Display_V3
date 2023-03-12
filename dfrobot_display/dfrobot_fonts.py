@@ -1,4 +1,4 @@
-# -*- coding: -*-
+# -*- coding:GB18030 -*-
 """ 
   @file DFRobot_fonts.py
   @brief Define the basic structure of class Fonts 
