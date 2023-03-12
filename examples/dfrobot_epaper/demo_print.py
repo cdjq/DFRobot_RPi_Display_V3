@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding:GB18030 -*-
 '''!
   @file demo_print.py
   @brief 字体示例

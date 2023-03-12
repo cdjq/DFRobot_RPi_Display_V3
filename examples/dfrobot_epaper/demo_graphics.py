@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding:GB18030 -*-
 '''!
   @file demo_graphics.py
   @brief basic graphics demo, such as line, rectangle, triangle, circle and pixel£º
