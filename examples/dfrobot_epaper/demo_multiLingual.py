@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding:GB18030 -*-
 '''!
   @file demo_print.py
   @brief 在屏幕上打印多国语言

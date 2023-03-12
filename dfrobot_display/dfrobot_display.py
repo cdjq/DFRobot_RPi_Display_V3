@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+# -*- coding:GB18030 -*-
 '''!
   @file DFRobot_Display.py
   @brief Define the basic structure of class DFRobot_Display 
